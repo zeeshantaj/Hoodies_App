@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Leaarn_Kotlin_For_Android</string>
+<!--    <string name="app_name">Leaarn_Kotlin_For_Android</string>-->
+    <string name="app_name">Outfit Mania</string>
     <string-array name="genderEntries">
         <item>Select Gender</item>
         <item>Male</item>
@@ -17,4 +18,8 @@
     <string name="enter_email">Enter Email</string>
     <string name="forget_password_ndont_t_worry_we_just_need_your_associated_email_nwith_this_account_to_send_you_an_reset_password_email">Forget Password? \ndont\'t worry we just need your associated Email \nwith this account to send you an reset password Email</string>
     <string name="back_to_login">Back to Login</string>
+    <string name="favourite">Favourite</string>
+    <string name="home">Home</string>
+    <string name="chat">Chat</string>
+    <string name="settings">Settings</string>
 </resources>
