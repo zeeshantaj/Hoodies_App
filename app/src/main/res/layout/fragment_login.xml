@@ -95,6 +95,7 @@
             android:text="@string/login"
             android:textSize="18sp"
             app:cornerRadius="7dp"
+            android:backgroundTint="@color/blueShade"
             app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/genderSpinner" />

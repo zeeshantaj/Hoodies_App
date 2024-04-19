@@ -6,12 +6,12 @@
         android:id="@+id/navHome"
         android:icon="@drawable/baseline_home_24"
         android:title="@string/home"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/navFav"
         android:icon="@drawable/baseline_home_24"
         android:title="@string/favourite"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/navChat"
         android:icon="@drawable/baseline_home_24"
@@ -19,7 +19,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/navSettings"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/baseline_settings_24"
         android:title="@string/settings"
         app:showAsAction="always" />
 

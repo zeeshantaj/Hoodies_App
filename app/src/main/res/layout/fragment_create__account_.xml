@@ -118,6 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:text="@string/login"
+            android:backgroundTint="@color/blueShade"
             android:textSize="18sp"
             app:cornerRadius="7dp" />
     </LinearLayout>
