@@ -14,4 +14,7 @@
     <string name="or">OR</string>
     <string name="forget_password">Forget Password</string>
     <string name="enter_name">Enter Name</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="forget_password_ndont_t_worry_we_just_need_your_associated_email_nwith_this_account_to_send_you_an_reset_password_email">Forget Password? \ndont\'t worry we just need your associated Email \nwith this account to send you an reset password Email</string>
+    <string name="back_to_login">Back to Login</string>
 </resources>
