@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Leaarn_Kotlin_For_Android</string>
+    <string-array name="genderEntries">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="remember_me_next_time">Remember me next time</string>
+</resources>
