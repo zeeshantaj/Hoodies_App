@@ -45,7 +45,7 @@
                 android:id="@+id/nameEd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Name" />
+                android:hint="@string/enter_name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +73,7 @@
             android:layout_gravity="end"
             android:layout_marginEnd="20dp"
             android:clickable="true"
-            android:text="Forget Password"
+            android:text="@string/forget_password"
             android:textColor="@color/blue" />
 
         <CheckBox
@@ -119,7 +119,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="OR"
+            android:text="@string/or"
             android:textAlignment="center"
             android:layout_weight="1"/>
         <View
@@ -137,7 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:clickable="true"
-        android:text="Create Account"
+        android:text="@string/create_account"
         android:textColor="@color/red"
         android:textSize="18sp"
         android:textStyle="bold"

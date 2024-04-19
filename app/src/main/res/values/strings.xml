@@ -10,4 +10,8 @@
     <string name="login">Login</string>
     <string name="enter_password">Enter Password</string>
     <string name="remember_me_next_time">Remember me next time</string>
+    <string name="create_account">Create Account</string>
+    <string name="or">OR</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="enter_name">Enter Name</string>
 </resources>
