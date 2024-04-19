@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragnents.Create_Account_Fragment">
+    tools:context=".Fragnents.CreateAccountFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout2"

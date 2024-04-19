@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.leaarn_kotlin_for_android.databinding.FragmentCreateAccountBinding
 
-class Create_Account_Fragment : Fragment() {
+class CreateAccountFragment : Fragment() {
 
 
     private lateinit var binding: FragmentCreateAccountBinding
@@ -20,4 +20,8 @@ class Create_Account_Fragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+
+    }
 }

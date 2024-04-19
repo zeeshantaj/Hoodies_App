@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.leaarn_kotlin_for_android.Animation.FragmentUtils
 import com.example.leaarn_kotlin_for_android.R
-import com.example.leaarn_kotlin_for_android.databinding.FragmentCreateAccountBinding
 import com.example.leaarn_kotlin_for_android.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -38,7 +37,7 @@ class LoginFragment : Fragment() {
             }
             Toast.makeText(activity,"\n"+binding.checkBox.isChecked,
                 Toast.LENGTH_SHORT).show()
-            activity?.let { it1 -> FragmentUtils.changeFragment(it1.supportFragmentManager,R.id.mainFragmentContainer,Create_Account_Fragment()) }
+            activity?.let { it1 -> FragmentUtils.changeFragment(it1.supportFragmentManager,R.id.mainFragmentContainer,CreateAccountFragment()) }
 
         }
     }
