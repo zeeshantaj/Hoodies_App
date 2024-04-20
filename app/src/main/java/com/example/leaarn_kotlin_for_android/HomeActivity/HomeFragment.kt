@@ -5,15 +5,37 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.leaarn_kotlin_for_android.Adapter.DiscountOfferPagerAdapter
+import com.example.leaarn_kotlin_for_android.DisOfferModel
 import com.example.leaarn_kotlin_for_android.R
+import com.example.leaarn_kotlin_for_android.databinding.FragmentCreateAccountBinding
+import com.example.leaarn_kotlin_for_android.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
 
+    private lateinit var binding: FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val disOfferModelsList = listOf(
+            DisOfferModel(R.drawable.hoodie1, "10%"),
+            DisOfferModel(R.drawable.hoodie1, "20%"),
+            DisOfferModel(R.drawable.hoodie1, "30%"),
+            // Add more items as needed
+        )
+        val adapter = DiscountOfferPagerAdapter(disOfferModelsList)
+        binding.offerViewPager.adapter = adapter
+
+        binding.dotsIndicator.attachTo(binding.offerViewPager)
+
     }
 }
