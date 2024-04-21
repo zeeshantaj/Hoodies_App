@@ -6,7 +6,7 @@
     app:cardCornerRadius="30dp"
     app:cardElevation="0dp"
     android:layout_margin="6dp"
-    app:cardBackgroundColor="@color/blueShade"
+    app:cardBackgroundColor="@color/white"
     android:id="@+id/categoryBackground">
 
     <TextView
@@ -16,5 +16,6 @@
         android:text="SweetShirt"
         android:textSize="18sp"
         android:padding="15dp"
-        android:textColor="@color/white"/>
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 </androidx.cardview.widget.CardView>
