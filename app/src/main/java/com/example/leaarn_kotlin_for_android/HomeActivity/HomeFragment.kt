@@ -74,9 +74,9 @@ class HomeFragment : Fragment() {
             // Add more items as needed
         )
         val adapter = CategoryRVAdapter(productList)
-        val LM = LinearLayoutManager(activity,  LinearLayoutManager.VERTICAL, false)
-        binding.productRV.layoutManager = LM
-        binding.productRV.adapter = adapter
+        val LM = LinearLayoutManager(activity,  LinearLayoutManager.HORIZONTAL, false)
+        binding.categoryRV.layoutManager = LM
+        binding.categoryRV.adapter = adapter
     }
 
     private fun getDiscountOffer() {
