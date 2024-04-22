@@ -37,8 +37,10 @@ public class CategoryRVAdapter extends RecyclerView.Adapter<CategoryRVAdapter.Vi
         holder.categoryName.setText(name);
         if (position == selectedItem) {
             holder.cardView.setCardBackgroundColor(Color.RED);
+            holder.categoryName.setTextColor(Color.WHITE);
         } else {
             holder.cardView.setCardBackgroundColor(Color.WHITE);
+            holder.categoryName.setTextColor(Color.BLACK);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
