@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.leaarn_kotlin_for_android.Adapter.CategoryRVAdapter
 import com.example.leaarn_kotlin_for_android.Adapter.DiscountOfferPagerAdapter
 import com.example.leaarn_kotlin_for_android.Adapter.ProductRVAdapter
 import com.example.leaarn_kotlin_for_android.Models.DisOfferModel
@@ -32,32 +33,53 @@ class HomeFragment : Fragment() {
 
         getDiscountOffer()
         getProducts()
+        getCategory()
     }
-    private fun getProducts(){
+
+    private fun getProducts() {
         val productList = listOf(
             ProductModel(
-                "Hoodie","Taj OutFit",4.2f,88.99,R.drawable.hoodie1
-            ),ProductModel(
-                "SweetShirt","Mega Store",4.1f,30.99,R.drawable.hoodie1
-            ),ProductModel(
-                "Quote shirt","G&P",3.2f,45.32,R.drawable.hoodie1
-            ),ProductModel(
-                "Track suit","Dragon wear",2.2f,72.99,R.drawable.hoodie1
-            ),ProductModel(
-                "Printed T-shirt","win win wear",3.1f,21.89,R.drawable.hoodie1
+                "Hoodie", "Taj OutFit", 4.2f, 88.99, R.drawable.hoodie1
+            ),
+            ProductModel(
+                "SweetShirt", "Mega Store", 4.1f, 30.99, R.drawable.hoodie1
+            ),
+            ProductModel(
+                "Quote shirt", "G&P", 3.2f, 45.32, R.drawable.hoodie1
+            ),
+            ProductModel(
+                "Track suit", "Dragon wear", 2.2f, 72.99, R.drawable.hoodie1
+            ),
+            ProductModel(
+                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
             ),
             // Add more items as needed
         )
         val adapter = ProductRVAdapter(productList)
-        val LM = GridLayoutManager(activity,2,GridLayoutManager.VERTICAL,false)
+        val LM = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
         binding.productRV.layoutManager = LM
         binding.productRV.adapter = adapter
 
     }
-    private fun getCategory(){
 
+    private fun getCategory() {
+        val productList = listOf(
+                "Hoodie","Sweetshirt",
+                "yoga paints",
+                "Track Suit",
+                "T-shirt",
+                "Denim",
+                "Shorts",
+                "trouser"
+            // Add more items as needed
+        )
+        val adapter = CategoryRVAdapter(productList)
+        val LM = LinearLayoutManager(activity,  LinearLayoutManager.VERTICAL, false)
+        binding.productRV.layoutManager = LM
+        binding.productRV.adapter = adapter
     }
-    private fun getDiscountOffer(){
+
+    private fun getDiscountOffer() {
         val disOfferModelsList = listOf(
             DisOfferModel(
                 R.drawable.hoodie1,
