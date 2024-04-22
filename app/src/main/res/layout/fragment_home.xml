@@ -27,12 +27,12 @@
             app:dotsColor="@color/white"
             app:dotsCornerRadius="8dp"
             app:dotsSize="16dp"
-            
             app:dotsSpacing="4dp"
             app:dotsWidthFactor="2.5"
             app:progressMode="true"
             android:layout_gravity="center"
-            app:selectedDotColor="@color/blueShade" />
+            app:selectedDotColor="@color/red"
+            android:layout_marginTop="4dp"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRV"

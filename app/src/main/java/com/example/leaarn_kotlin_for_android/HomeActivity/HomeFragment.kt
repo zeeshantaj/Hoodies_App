@@ -78,4 +78,5 @@ class HomeFragment : Fragment() {
 
         binding.dotsIndicator.attachTo(binding.offerViewPager)
     }
+
 }

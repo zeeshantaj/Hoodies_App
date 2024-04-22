@@ -49,7 +49,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
-    implementation(libs.whynotimagecarousel)
+
     implementation(libs.dotsindicator)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
