@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.leaarn_kotlin_for_android.DisOfferModel;
+import com.example.leaarn_kotlin_for_android.Models.DisOfferModel;
 import com.example.leaarn_kotlin_for_android.R;
 
 import java.util.List;

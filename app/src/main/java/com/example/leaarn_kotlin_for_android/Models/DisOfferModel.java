@@ -1,4 +1,4 @@
-package com.example.leaarn_kotlin_for_android;
+package com.example.leaarn_kotlin_for_android.Models;
 
 public class DisOfferModel {
     private int image;
