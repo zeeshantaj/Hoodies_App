@@ -27,8 +27,9 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
     private List<ProductModel> productModelList;
     private OnProductItemClicked onProductItemClicked;
 
-    public ProductRVAdapter(List<ProductModel> productModelList) {
+    public ProductRVAdapter(List<ProductModel> productModelList,OnProductItemClicked onProductItemClicked) {
         this.productModelList = productModelList;
+        this.onProductItemClicked = onProductItemClicked;
     }
 
     @NonNull
@@ -53,7 +54,10 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // onProductItemClicked.onProductClick(model.getProductImg());
+
+                if (onProductItemClicked != null){
+                    onProductItemClicked.onProductClick(model.getProductImg());
+                }
                 openFragment(v.getContext(),new DetailsFragment());
             }
         });

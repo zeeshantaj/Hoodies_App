@@ -37,6 +37,7 @@
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/nav_bg"
+            app:itemIconSize="28sp"
             app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
             app:itemIconTint="@color/white"
             app:itemRippleColor="@color/blueShade"

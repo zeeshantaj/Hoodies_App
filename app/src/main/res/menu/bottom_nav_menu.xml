@@ -4,22 +4,22 @@
 
     <item
         android:id="@+id/navHome"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/home_icon"
         android:title="@string/home"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/navFav"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/heart_icon"
         android:title="@string/favourite"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/navChat"
-        android:icon="@drawable/baseline_home_24"
+        android:icon="@drawable/chat_icon"
         android:title="@string/chat"
         app:showAsAction="always" />
     <item
         android:id="@+id/navSettings"
-        android:icon="@drawable/baseline_settings_24"
+        android:icon="@drawable/setting_icon"
         android:title="@string/settings"
         app:showAsAction="always" />
 

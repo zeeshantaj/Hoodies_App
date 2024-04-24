@@ -12,6 +12,7 @@ import com.example.leaarn_kotlin_for_android.Adapter.CategoryRVAdapter
 import com.example.leaarn_kotlin_for_android.Adapter.DiscountOfferPagerAdapter
 import com.example.leaarn_kotlin_for_android.Adapter.ProductRVAdapter
 import com.example.leaarn_kotlin_for_android.Interface.OnCategoryItemClicked
+import com.example.leaarn_kotlin_for_android.Interface.OnProductItemClicked
 import com.example.leaarn_kotlin_for_android.Models.DisOfferModel
 import com.example.leaarn_kotlin_for_android.Models.ProductModel
 import com.example.leaarn_kotlin_for_android.R
@@ -88,7 +89,8 @@ class HomeFragment : Fragment(),OnCategoryItemClicked{
             ),
             // Add more items as needed
         )
-        val adapter = ProductRVAdapter(productList)
+        val adapter = ProductRVAdapter(productList, OnProductItemClicked {
+        })
         val LM = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
         binding.productRV.layoutManager = LM
         binding.productRV.adapter = adapter
