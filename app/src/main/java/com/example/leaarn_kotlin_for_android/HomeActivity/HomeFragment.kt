@@ -16,6 +16,9 @@ import com.example.leaarn_kotlin_for_android.Models.DisOfferModel
 import com.example.leaarn_kotlin_for_android.Models.ProductModel
 import com.example.leaarn_kotlin_for_android.R
 import com.example.leaarn_kotlin_for_android.databinding.FragmentHomeBinding
+import java.util.Timer
+import java.util.TimerTask
+import kotlin.concurrent.timer
 
 class HomeFragment : Fragment(),OnCategoryItemClicked{
 
@@ -78,6 +81,10 @@ class HomeFragment : Fragment(),OnCategoryItemClicked{
             ),
             ProductModel(
                 "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
+            ),  ProductModel(
+                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
+            ),  ProductModel(
+                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
             ),
             // Add more items as needed
         )
@@ -108,6 +115,18 @@ class HomeFragment : Fragment(),OnCategoryItemClicked{
         binding.offerViewPager.adapter = adapter
 
         binding.dotsIndicator.attachTo(binding.offerViewPager)
+
+        val timer = Timer()
+        timer.scheduleAtFixedRate(object : TimerTask(){
+            override fun run() {
+                activity?.runOnUiThread{
+                    val currentTime = binding.offerViewPager.currentItem
+                    val nextItem = if (currentTime == adapter.itemCount - 1) 0 else currentTime + 1
+                    binding.offerViewPager.setCurrentItem(nextItem,true)
+                }
+            }
+        },1000,1000)
+
     }
 
     override fun onCategoryClick(category: String?) {

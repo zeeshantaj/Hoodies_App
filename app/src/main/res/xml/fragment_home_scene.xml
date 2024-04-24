@@ -10,10 +10,10 @@
        <KeyFrameSet>
        </KeyFrameSet>
         <OnSwipe
-            motion:touchAnchorId="@id/productRV"
             motion:dragDirection="dragUp"
-            motion:nestedScrollFlags="supportScrollUp"
-            motion:touchAnchorSide="top"/>
+            motion:touchAnchorId="@id/productRV"
+            motion:touchAnchorSide="top"
+            />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
@@ -22,8 +22,6 @@
     <ConstraintSet android:id="@+id/end">
         <Constraint
             android:id="@+id/disOfferLinearLay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:visibility="gone"
             />
     </ConstraintSet>
