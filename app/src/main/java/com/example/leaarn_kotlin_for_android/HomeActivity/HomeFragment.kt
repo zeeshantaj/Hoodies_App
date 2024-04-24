@@ -125,7 +125,7 @@ class HomeFragment : Fragment(),OnCategoryItemClicked{
                     binding.offerViewPager.setCurrentItem(nextItem,true)
                 }
             }
-        },1000,1000)
+        },5000,5000)
 
     }
 
