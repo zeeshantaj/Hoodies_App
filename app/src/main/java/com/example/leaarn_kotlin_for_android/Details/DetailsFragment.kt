@@ -1,6 +1,5 @@
 package com.example.leaarn_kotlin_for_android.Details
 
-import android.R.attr
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +9,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.leaarn_kotlin_for_android.Adapter.SmallImagesAdapter
 import com.example.leaarn_kotlin_for_android.Interface.OnProductItemClicked
 import com.example.leaarn_kotlin_for_android.R
 import com.example.leaarn_kotlin_for_android.databinding.DetailsLayoutBinding
@@ -17,6 +18,7 @@ import com.example.leaarn_kotlin_for_android.databinding.DetailsLayoutBinding
 
 class DetailsFragment : Fragment(),OnProductItemClicked{
     private lateinit var binding : DetailsLayoutBinding
+    private lateinit var smallImagesAdapter: SmallImagesAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +44,28 @@ class DetailsFragment : Fragment(),OnProductItemClicked{
         binding.sizeXL.setOnClickListener {
             selectedSize(binding.sizeXL)
         }
+
+        val mainImages = listOf(
+            R.drawable.hoodie1,
+            R.drawable.hoodie1,
+            R.drawable.hoodie1
+        )
+
+        val smallImages = listOf(
+            R.drawable.hoodie1,
+            R.drawable.hoodie1,
+            R.drawable.hoodie1
+        )
+
+        smallImagesAdapter = SmallImagesAdapter(smallImages) { position ->
+            binding.descriptionMainImgVP.currentItem = position
+        }
+
+        binding.descriptionSmallImagesRecyclerView.adapter = smallImagesAdapter
+        binding.descriptionSmallImagesRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+
     }
     fun selectedSize(button:Button){
 
