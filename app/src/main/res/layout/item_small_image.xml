@@ -11,6 +11,7 @@
     android:clickable="true"
     android:foreground="?android:selectableItemBackground"
     app:cardBackgroundColor="@color/lightGrey">
+
     <ImageView
         android:id="@+id/smallImageView"
         android:layout_width="40dp"
