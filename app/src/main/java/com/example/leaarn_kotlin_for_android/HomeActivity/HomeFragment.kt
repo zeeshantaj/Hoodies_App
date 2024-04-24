@@ -39,6 +39,29 @@ class HomeFragment : Fragment(),OnCategoryItemClicked{
         getCategory()
     }
 
+
+    private fun getCategory() {
+        val productList = listOf(
+                "Hoodie","Sweetshirt",
+                "yoga paints",
+                "Track Suit",
+                "T-shirt",
+                "Denim",
+                "Shorts",
+                "trouser"
+            // Add more items as needed
+        )
+        val adapter = CategoryRVAdapter(productList,this)
+        val defaultCategory = productList.firstOrNull()
+        val LM = LinearLayoutManager(activity,  LinearLayoutManager.HORIZONTAL, false)
+        binding.categoryRV.layoutManager = LM
+        binding.categoryRV.adapter = adapter
+
+        // set default category before clicking any cat item
+        defaultCategory?.let {
+            selectedCategory = it
+        }
+    }
     private fun getProducts() {
         val productList = listOf(
             ProductModel(
@@ -63,29 +86,6 @@ class HomeFragment : Fragment(),OnCategoryItemClicked{
         binding.productRV.layoutManager = LM
         binding.productRV.adapter = adapter
 
-    }
-
-    private fun getCategory() {
-        val productList = listOf(
-                "Hoodie","Sweetshirt",
-                "yoga paints",
-                "Track Suit",
-                "T-shirt",
-                "Denim",
-                "Shorts",
-                "trouser"
-            // Add more items as needed
-        )
-        val adapter = CategoryRVAdapter(productList,this)
-        val defaultCategory = productList.firstOrNull()
-        val LM = LinearLayoutManager(activity,  LinearLayoutManager.HORIZONTAL, false)
-        binding.categoryRV.layoutManager = LM
-        binding.categoryRV.adapter = adapter
-
-        // set default category before clicking any cat item
-        defaultCategory?.let {
-            selectedCategory = it
-        }
     }
 
     private fun getDiscountOffer() {
