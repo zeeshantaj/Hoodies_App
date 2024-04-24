@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.leaarn_kotlin_for_android.Interface.OnCategoryItemClicked;
 import com.example.leaarn_kotlin_for_android.R;
 
 import androidx.annotation.NonNull;
@@ -19,9 +21,11 @@ public class CategoryRVAdapter extends RecyclerView.Adapter<CategoryRVAdapter.Vi
     private List<String> categoryList;
     private int selectedItem = RecyclerView.NO_POSITION;
 
+    private OnCategoryItemClicked listener;
 
-    public CategoryRVAdapter(List<String> categoryList) {
+    public CategoryRVAdapter(List<String> categoryList, OnCategoryItemClicked listener) {
         this.categoryList = categoryList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -49,7 +53,10 @@ public class CategoryRVAdapter extends RecyclerView.Adapter<CategoryRVAdapter.Vi
                 int previousSelected = selectedItem;
                 selectedItem = holder.getAdapterPosition();
                 notifyItemChanged(previousSelected);
-                notifyItemChanged(selectedItem);
+               notifyItemChanged(selectedItem);
+               if (listener != null){
+                   listener.onCategoryClick(name);
+               }
             }
         });
     }

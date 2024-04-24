@@ -1,6 +1,7 @@
 package com.example.leaarn_kotlin_for_android.HomeActivity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +11,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.leaarn_kotlin_for_android.Adapter.CategoryRVAdapter
 import com.example.leaarn_kotlin_for_android.Adapter.DiscountOfferPagerAdapter
 import com.example.leaarn_kotlin_for_android.Adapter.ProductRVAdapter
+import com.example.leaarn_kotlin_for_android.Interface.OnCategoryItemClicked
 import com.example.leaarn_kotlin_for_android.Models.DisOfferModel
 import com.example.leaarn_kotlin_for_android.Models.ProductModel
 import com.example.leaarn_kotlin_for_android.R
 import com.example.leaarn_kotlin_for_android.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),OnCategoryItemClicked{
 
     private lateinit var binding: FragmentHomeBinding
+    private var selectedCategory : String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -73,10 +76,16 @@ class HomeFragment : Fragment() {
                 "trouser"
             // Add more items as needed
         )
-        val adapter = CategoryRVAdapter(productList)
+        val adapter = CategoryRVAdapter(productList,this)
+        val defaultCategory = productList.firstOrNull()
         val LM = LinearLayoutManager(activity,  LinearLayoutManager.HORIZONTAL, false)
         binding.categoryRV.layoutManager = LM
         binding.categoryRV.adapter = adapter
+
+        // set default category before clicking any cat item
+        defaultCategory?.let {
+            selectedCategory = it
+        }
     }
 
     private fun getDiscountOffer() {
@@ -99,6 +108,11 @@ class HomeFragment : Fragment() {
         binding.offerViewPager.adapter = adapter
 
         binding.dotsIndicator.attachTo(binding.offerViewPager)
+    }
+
+    override fun onCategoryClick(category: String?) {
+        selectedCategory = category
+        Log.d("MyApp", "category Name$category")
     }
 
 }
