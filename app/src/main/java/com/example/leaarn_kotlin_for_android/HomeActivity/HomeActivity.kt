@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.example.leaarn_kotlin_for_android.Chat.FragmentChat
+import com.example.leaarn_kotlin_for_android.Favourite.FragmentFavourite
 import com.example.leaarn_kotlin_for_android.R
 import com.example.leaarn_kotlin_for_android.databinding.ActivityHomeBinding
 import com.example.leaarn_kotlin_for_android.databinding.ActivityMainBinding
@@ -22,8 +24,8 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId){
                 R.id.navHome -> loadFragment(HomeFragment())
-                R.id.navFav -> loadFragment(HomeFragment())
-                R.id.navChat -> loadFragment(HomeFragment())
+                R.id.navFav -> loadFragment(FragmentFavourite())
+                R.id.navChat -> loadFragment(FragmentChat())
                 R.id.navSettings -> loadFragment(HomeFragment())
             }
             true
