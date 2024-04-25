@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.leaarn_kotlin_for_android.R
 
@@ -23,6 +24,7 @@ class SmallImagesAdapter(private val smallImages: List<Int>, private val listene
         holder.imageView.setImageResource(imageResId)
         holder.itemView.setOnClickListener {
             listener.onItemClick(position)
+
         }
     }
 

@@ -19,6 +19,7 @@ import com.example.leaarn_kotlin_for_android.databinding.DetailsLayoutBinding
 class DetailsFragment : Fragment(),OnProductItemClicked,SmallImagesAdapter.OnItemClickListener{
     private lateinit var binding : DetailsLayoutBinding
     private lateinit var smallImagesAdapter: SmallImagesAdapter
+    private lateinit var smallImages: List<Int>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,14 +47,15 @@ class DetailsFragment : Fragment(),OnProductItemClicked,SmallImagesAdapter.OnIte
         }
 
 
-        val smallImages = listOf(
+        smallImages = listOf(
             R.drawable.hoodie1,
-            R.drawable.hoodie1,
+            R.drawable.google_pay_logo,
             R.drawable.hoodie1
         )
 
         smallImagesAdapter = SmallImagesAdapter(smallImages,this)
-        binding.descriptionMainImgVP.currentItem = 0
+
+        binding.descriptionMainImgVP.setImageResource(smallImages[0])
 
         binding.descriptionSmallImagesRecyclerView.adapter = smallImagesAdapter
         binding.descriptionSmallImagesRecyclerView.layoutManager =
@@ -63,7 +65,11 @@ class DetailsFragment : Fragment(),OnProductItemClicked,SmallImagesAdapter.OnIte
             Toast.makeText(activity, "Order Placed", Toast.LENGTH_SHORT).show()
 
         }
+    }
+    override fun onItemClick(position: Int) {
+        binding.descriptionMainImgVP.setImageResource(smallImages[position])
 
+        Toast.makeText(activity, "img clicked$position", Toast.LENGTH_SHORT).show()
 
     }
     private fun selectedSize(button:Button){
@@ -91,9 +97,6 @@ class DetailsFragment : Fragment(),OnProductItemClicked,SmallImagesAdapter.OnIte
 
     }
 
-    override fun onItemClick(position: Int) {
-        binding.descriptionMainImgVP.currentItem = position
 
-    }
 
 }
