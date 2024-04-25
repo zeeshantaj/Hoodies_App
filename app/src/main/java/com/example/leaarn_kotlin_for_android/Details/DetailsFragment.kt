@@ -16,7 +16,7 @@ import com.example.leaarn_kotlin_for_android.R
 import com.example.leaarn_kotlin_for_android.databinding.DetailsLayoutBinding
 
 
-class DetailsFragment : Fragment(),OnProductItemClicked{
+class DetailsFragment : Fragment(),OnProductItemClicked,SmallImagesAdapter.OnItemClickListener{
     private lateinit var binding : DetailsLayoutBinding
     private lateinit var smallImagesAdapter: SmallImagesAdapter
     override fun onCreateView(
@@ -45,11 +45,6 @@ class DetailsFragment : Fragment(),OnProductItemClicked{
             selectedSize(binding.sizeXL)
         }
 
-        val mainImages = listOf(
-            R.drawable.hoodie1,
-            R.drawable.hoodie1,
-            R.drawable.hoodie1
-        )
 
         val smallImages = listOf(
             R.drawable.hoodie1,
@@ -57,17 +52,21 @@ class DetailsFragment : Fragment(),OnProductItemClicked{
             R.drawable.hoodie1
         )
 
-        smallImagesAdapter = SmallImagesAdapter(smallImages) { position ->
-            binding.descriptionMainImgVP.currentItem = position
-        }
+        smallImagesAdapter = SmallImagesAdapter(smallImages,this)
+        binding.descriptionMainImgVP.currentItem = 0
 
         binding.descriptionSmallImagesRecyclerView.adapter = smallImagesAdapter
         binding.descriptionSmallImagesRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
+        binding.orderBtn.setOnClickListener {
+            Toast.makeText(activity, "Order Placed", Toast.LENGTH_SHORT).show()
+
+        }
+
 
     }
-    fun selectedSize(button:Button){
+    private fun selectedSize(button:Button){
 
         defaultBtnProperties()
         button.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.red));
@@ -89,6 +88,11 @@ class DetailsFragment : Fragment(),OnProductItemClicked{
     }
 
     override fun onProductClick(productID: Int) {
+
+    }
+
+    override fun onItemClick(position: Int) {
+        binding.descriptionMainImgVP.currentItem = position
 
     }
 

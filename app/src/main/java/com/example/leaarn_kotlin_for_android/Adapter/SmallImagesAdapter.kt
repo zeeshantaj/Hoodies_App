@@ -7,9 +7,11 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.leaarn_kotlin_for_android.R
 
-class SmallImagesAdapter(private val smallImages: List<Int>, private val onItemClick: (Int) -> Unit) :
+class SmallImagesAdapter(private val smallImages: List<Int>, private val listener: OnItemClickListener) :
     RecyclerView.Adapter<SmallImagesAdapter.ViewHolder>() {
-
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_small_image, parent, false)
@@ -20,7 +22,7 @@ class SmallImagesAdapter(private val smallImages: List<Int>, private val onItemC
         val imageResId = smallImages[position]
         holder.imageView.setImageResource(imageResId)
         holder.itemView.setOnClickListener {
-            onItemClick(position)
+            listener.onItemClick(position)
         }
     }
 
