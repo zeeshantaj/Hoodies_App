@@ -69,7 +69,7 @@ class DetailsFragment : Fragment(),OnProductItemClicked,SmallImagesAdapter.OnIte
     override fun onItemClick(position: Int) {
         binding.descriptionMainImgVP.setImageResource(smallImages[position])
 
-        Toast.makeText(activity, "img clicked$position", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(activity, "img clicked$position", Toast.LENGTH_SHORT).show()
 
     }
     private fun selectedSize(button:Button){
