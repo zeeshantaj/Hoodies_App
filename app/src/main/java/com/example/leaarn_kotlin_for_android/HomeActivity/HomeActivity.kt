@@ -1,6 +1,8 @@
 package com.example.leaarn_kotlin_for_android.HomeActivity
 
 import android.os.Bundle
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.leaarn_kotlin_for_android.Chat.FragmentChat
@@ -30,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
                         FragmentUtils.loadFragment(supportFragmentManager,binding.mainFragmentContainer.id,currentFragment!!)
                         //binding.toolbar.setTitle("")
                         supportActionBar?.title = "Products"
+
                     }
                 }
                 R.id.navFav -> {
@@ -58,6 +61,7 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
             true
+
         }
 
     }

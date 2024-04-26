@@ -11,7 +11,6 @@ class FragmentUtils {
             // go back on fragment one by one
             transaction.addToBackStack(null)
             transaction.commit()
-
         }
     }
 }
