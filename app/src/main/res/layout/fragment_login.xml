@@ -45,6 +45,7 @@
                 android:id="@+id/emailEd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHint="@color/darkGrey"
                 android:hint="@string/enter_email" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,6 +64,7 @@
                 android:id="@+id/passwordEd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHint="@color/darkGrey"
                 android:hint="@string/enter_password" />
         </com.google.android.material.textfield.TextInputLayout>
 
