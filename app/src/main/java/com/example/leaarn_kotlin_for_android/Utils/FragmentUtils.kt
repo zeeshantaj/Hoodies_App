@@ -8,6 +8,8 @@ class FragmentUtils {
         fun loadFragment(fragmentManager: FragmentManager, id: Int, fragment: Fragment) {
             val transaction = fragmentManager.beginTransaction()
             transaction.replace(id, fragment)
+            // go back on fragment one by one
+            transaction.addToBackStack(null)
             transaction.commit()
 
         }
