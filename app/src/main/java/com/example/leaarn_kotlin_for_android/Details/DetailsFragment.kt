@@ -12,7 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.leaarn_kotlin_for_android.Adapter.SmallImagesAdapter
 import com.example.leaarn_kotlin_for_android.Interface.OnProductItemClicked
+import com.example.leaarn_kotlin_for_android.Payment.FragmentPayment
 import com.example.leaarn_kotlin_for_android.R
+import com.example.leaarn_kotlin_for_android.Utils.FragmentUtils
 import com.example.leaarn_kotlin_for_android.databinding.DetailsLayoutBinding
 
 
@@ -23,7 +25,7 @@ class DetailsFragment : Fragment(),OnProductItemClicked,SmallImagesAdapter.OnIte
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = DetailsLayoutBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -63,6 +65,9 @@ class DetailsFragment : Fragment(),OnProductItemClicked,SmallImagesAdapter.OnIte
 
         binding.orderBtn.setOnClickListener {
             Toast.makeText(activity, "Order Placed", Toast.LENGTH_SHORT).show()
+            activity?.let {
+                FragmentUtils.loadFragment(it.supportFragmentManager ,R.id.mainFragmentContainer,FragmentPayment())
+            }
 
         }
     }
@@ -75,17 +80,17 @@ class DetailsFragment : Fragment(),OnProductItemClicked,SmallImagesAdapter.OnIte
     private fun selectedSize(button:Button){
 
         defaultBtnProperties()
-        button.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.red));
+        button.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.red))
         button.setTextColor(Color.WHITE)
         val buttonText: String = button.text.toString()
         Toast.makeText(activity, "Clicked Button: $buttonText", Toast.LENGTH_SHORT).show()
 
     }
     private fun defaultBtnProperties(){
-        binding.sizeL.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.lightGrey));
-        binding.sizeM.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.lightGrey));
-        binding.sizeS.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.lightGrey));
-        binding.sizeXL.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.lightGrey));
+        binding.sizeL.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.lightGrey))
+        binding.sizeM.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.lightGrey))
+        binding.sizeS.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.lightGrey))
+        binding.sizeXL.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.lightGrey))
 
         binding.sizeL.setTextColor(Color.BLACK)
         binding.sizeM.setTextColor(Color.BLACK)

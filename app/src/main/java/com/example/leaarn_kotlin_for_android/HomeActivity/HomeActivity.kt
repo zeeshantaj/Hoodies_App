@@ -37,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
                     if (currentFragment !is HomeFragment) {
                         currentFragment = HomeFragment()
                         FragmentUtils.loadFragment(supportFragmentManager,binding.mainFragmentContainer.id,currentFragment!!)
-                        binding.toolbar.setTitle("Home")
+                        binding.toolbar.setTitle("Products")
                     }
                 }
                 R.id.navFav -> {
