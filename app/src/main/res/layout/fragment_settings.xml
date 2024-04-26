@@ -26,6 +26,8 @@
                 android:elevation="0dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="5dp"
+                android:foreground="@drawable/product_item_foregorund"
+                android:clickable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -41,13 +43,14 @@
                         android:layout_marginStart="10dp"
                         android:drawablePadding="20sp"
                         android:text="Dark Theme"
-                        android:textColor="@color/black"
+                        android:textColor="@color/darkGrey"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:drawableStartCompat="@drawable/theme_icon"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:drawableTint="@color/darkGrey" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/darkThemeSwitch"
@@ -58,7 +61,6 @@
                         android:padding="20dp"
                         android:textSize="20sp"
                         android:thumb="@drawable/custom_thumb"
-
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -67,7 +69,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,6 +78,8 @@
                 android:elevation="0dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="5dp"
+                android:foreground="@drawable/product_item_foregorund"
+                android:clickable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -91,13 +94,14 @@
                         android:drawablePadding="20sp"
                         android:padding="20dp"
                         android:text="Notification"
-                        android:textColor="@color/black"
+                        android:textColor="@color/darkGrey"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:drawableStartCompat="@drawable/baseline_notifications_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:drawableTint="@color/darkGrey" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/notificationSwitch"
@@ -107,6 +111,7 @@
                         android:layout_marginEnd="10dp"
                         android:padding="20dp"
                         android:textSize="20sp"
+                        android:checked="true"
                         android:thumb="@drawable/custom_thumb"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -116,13 +121,43 @@
 
 
             </androidx.cardview.widget.CardView>
-
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:foreground="@drawable/product_item_foregorund"
+                android:clickable="true"
+                android:elevation="0dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="20sp"
+                    android:padding="20dp"
+                    android:text="Profile"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/baseline_person_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableTint="@color/darkGrey" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:foreground="@drawable/product_item_foregorund"
+                android:clickable="true"
                 android:layout_marginEnd="20dp"
                 android:elevation="0dp"
                 app:cardBackgroundColor="@color/white"
@@ -137,10 +172,11 @@
                     android:drawablePadding="20sp"
                     android:padding="20dp"
                     android:text="Language"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darkGrey"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/baseline_language_24"
+                    android:drawableTint="@color/darkGrey"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -150,6 +186,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:foreground="@drawable/product_item_foregorund"
+                android:clickable="true"
                 android:layout_marginEnd="20dp"
                 android:elevation="0dp"
                 app:cardBackgroundColor="@color/white"
@@ -164,20 +202,22 @@
                     android:drawablePadding="20sp"
                     android:padding="20dp"
                     android:text="Order History"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darkGrey"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/baseline_check_box_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableTint="@color/darkGrey" />
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:foreground="@drawable/product_item_foregorund"
+                android:clickable="true"
                 android:layout_marginEnd="20dp"
                 android:elevation="0dp"
                 app:cardBackgroundColor="@color/white"
@@ -192,20 +232,22 @@
                     android:drawablePadding="20sp"
                     android:padding="20dp"
                     android:text="Location"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darkGrey"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/baseline_location_on_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableTint="@color/darkGrey" />
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:foreground="@drawable/product_item_foregorund"
+                android:clickable="true"
                 android:layout_marginEnd="20dp"
                 android:elevation="0dp"
                 app:cardBackgroundColor="@color/white"
@@ -220,20 +262,22 @@
                     android:drawablePadding="20sp"
                     android:padding="20dp"
                     android:text="Privacy Policy"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darkGrey"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:drawableTint="@color/darkGrey"
                     app:drawableStartCompat="@drawable/baseline_privacy_tip_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.cardview.widget.CardView>
-
-
             <androidx.cardview.widget.CardView
+                android:id="@+id/logoutBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:foreground="@drawable/product_item_foregorund"
+                android:clickable="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:elevation="0dp"
@@ -244,16 +288,17 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="20dp"
                     android:text="Logout"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darkGrey"
                     android:textSize="18sp"
                     android:padding="20dp"
                     app:drawableStartCompat="@drawable/baseline_logout_24"
-                    app:drawableTint="@color/black" />
+                    app:drawableTint="@color/darkGrey" />
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -261,6 +306,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
+                android:foreground="@drawable/product_item_foregorund"
+                android:clickable="true"
                 android:layout_marginBottom="10dp"
                 android:elevation="0dp"
                 app:cardBackgroundColor="@color/white"
@@ -275,11 +322,11 @@
                     android:drawablePadding="20dp"
                     android:text="Delete Account"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/darkGrey"
                     android:textSize="18sp"
                     android:padding="20dp"
                     app:drawableStartCompat="@drawable/baseline_delete_24"
-                    app:drawableTint="@color/black" />
+                    app:drawableTint="@color/darkGrey" />
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>

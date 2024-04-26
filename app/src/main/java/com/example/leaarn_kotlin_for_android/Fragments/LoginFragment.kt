@@ -54,7 +54,7 @@ class LoginFragment : Fragment() {
 
         }
         binding.createAccTxt.setOnClickListener {
-            activity?.let { it1 -> FragmentUtils.changeFragment(it1.supportFragmentManager,R.id.mainFragmentContainer,CreateAccountFragment()) }
+            activity?.let { it1 -> FragmentUtils.changeFragment(it1.supportFragmentManager,R.id.loginFragmentContainer,CreateAccountFragment()) }
         }
 
 
