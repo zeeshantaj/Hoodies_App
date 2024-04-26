@@ -28,7 +28,7 @@ class FragmentSettings: Fragment() {
 
     override fun onStart() {
         super.onStart()
-        binding.logoutBtn.setOnClickListener {
+        binding.logoutCard.setOnClickListener {
 
             val builder = AlertDialog.Builder(activity)
 
@@ -53,6 +53,9 @@ class FragmentSettings: Fragment() {
             alertDialogue.show()
 
 
+
+        }
+        binding.deleteCard.setOnClickListener {
 
         }
     }
