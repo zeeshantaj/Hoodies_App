@@ -27,7 +27,6 @@ import com.google.firebase.database.ValueEventListener
 class DetailsFragment : Fragment() {
     private lateinit var binding: DetailsLayoutBinding
     private lateinit var smallImagesAdapter: SmallImagesAdapter
-    private lateinit var smallImages: List<Int>
     private var imageList = mutableListOf<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +43,6 @@ class DetailsFragment : Fragment() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Product Details"
 
-
-
         binding.sizeL.setOnClickListener {
             selectedSize(binding.sizeL)
         }
@@ -59,14 +56,6 @@ class DetailsFragment : Fragment() {
             selectedSize(binding.sizeXL)
         }
 
-
-//        smallImages = listOf(
-//            R.drawable.hoodie1,
-//            R.drawable.google_pay_logo,
-//            R.drawable.hoodie1
-//        )
-
-
         binding.orderBtn.setOnClickListener {
             Toast.makeText(activity, "Order Placed", Toast.LENGTH_SHORT).show()
             activity?.let {
@@ -79,7 +68,6 @@ class DetailsFragment : Fragment() {
 
         }
         getProductDetails()
-
     }
 
     private fun getProductDetails() {
@@ -120,11 +108,7 @@ class DetailsFragment : Fragment() {
                 binding.descriptionSmallImagesRecyclerView.adapter = smallImagesAdapter
                 binding.descriptionSmallImagesRecyclerView.layoutManager =
                     LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                Log.d("MyApp", "name $productName")
-                Log.d("MyApp", "price $price")
-                Log.d("MyApp", "rating $rating")
-                Log.d("MyApp", "store $storeName")
-//                Log.d("MyApp", "image url $imageUrl")
+
                 binding.descriptionProductName.text = productName
                 binding.descriptionStoreName.text = "Featured by $storeName"
                 binding.descriptionText.text = description
@@ -134,16 +118,10 @@ class DetailsFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
                 Log.d("MyApp", "Error ${error.message}")
             }
-
-//            override fun onItemClick(position:Int,url: String) {
-//                Glide.with(requireActivity())
-//                    .load(url)
-//                    .into(binding.descriptionMainImgVP)
-//            }
         })
-
-        //binding.descriptionMainImgVP.setImageResource(imageList[0])
-
+        binding.orderBtn.setOnClickListener {
+            Toast.makeText(activity,"id $productId",Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun selectedSize(button: Button) {
