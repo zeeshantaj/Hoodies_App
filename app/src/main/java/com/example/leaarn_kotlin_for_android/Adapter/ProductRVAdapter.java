@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.leaarn_kotlin_for_android.Details.DetailsFragment;
 import com.example.leaarn_kotlin_for_android.Interface.OnProductItemClicked;
 import com.example.leaarn_kotlin_for_android.Models.ProductModel;
@@ -26,7 +27,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
     private List<ProductModel> productModelList;
     private OnProductItemClicked onProductItemClicked;
 
-    public ProductRVAdapter(List<ProductModel> productModelList,OnProductItemClicked onProductItemClicked) {
+    public ProductRVAdapter(List<ProductModel> productModelList, OnProductItemClicked onProductItemClicked) {
         this.productModelList = productModelList;
         this.onProductItemClicked = onProductItemClicked;
     }
@@ -34,7 +35,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
     @NonNull
     @Override
     public ProductRVAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_rec_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_rec_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -46,18 +47,21 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
 
         holder.rating.setText(String.valueOf(model.getRating()));
 
-        holder.price.setText(String.format("$ %4.2f",model.getPrice()));
+        holder.price.setText(String.format("$ %4.2f", model.getPrice()));
 
-        holder.productImg.setImageResource(model.getProductImg1());
+        //holder.productImg.setImageResource(model.getProductImg1());
 
+        Glide.with(holder.itemView.getContext())
+                .load(model.getProductImage())
+                .into(holder.productImg);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onProductItemClicked != null){
-                    onProductItemClicked.onProductClick(model.getProductImg1());
+                if (onProductItemClicked != null) {
+                    //onProductItemClicked.onProductClick(model.getProductImg1());
                 }
-                openFragment(v.getContext(),new DetailsFragment());
+                openFragment(v.getContext(), new DetailsFragment());
             }
         });
     }
@@ -68,8 +72,9 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView name,storeName,rating,price;
+        private TextView name, storeName, rating, price;
         private ImageView productImg;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.productName);
@@ -79,6 +84,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
             productImg = itemView.findViewById(R.id.productImg);
         }
     }
+
     private void openFragment(Context context, Fragment fragment) {
         if (context instanceof AppCompatActivity) {
             FragmentManager manager = ((AppCompatActivity) context).getSupportFragmentManager();

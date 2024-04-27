@@ -1,21 +1,22 @@
 package com.example.leaarn_kotlin_for_android.Models;
 
 public class ProductModel {
-    private String productName,storeName;
+
+    private String productName,storeName,productId;
     //private String productImageUrl;
-    private int productImg1;
-    private float rating;
+    private String productImage;
+    private double rating;
     private double price;
 
     public ProductModel() {
     }
 
-    public ProductModel(String name, String storeName, float rating, double productPrice, int productImg) {
+    public ProductModel(String name, String storeName, double rating, double productPrice, String productImg) {
         this.productName = name;
         this.storeName = storeName;
         this.rating = rating;
         this.price = productPrice;
-        this.productImg1 = productImg;
+        this.productImage = productImg;
     }
 
     public String getProductName() {
@@ -34,11 +35,11 @@ public class ProductModel {
         this.storeName = storeName;
     }
 
-    public float getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
@@ -50,11 +51,19 @@ public class ProductModel {
         this.price = price;
     }
 
-    public int getProductImg1() {
-        return productImg1;
+    public String getProductImage() {
+        return productImage;
     }
 
-    public void setProductImg1(int productImg1) {
-        this.productImg1 = productImg1;
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 }

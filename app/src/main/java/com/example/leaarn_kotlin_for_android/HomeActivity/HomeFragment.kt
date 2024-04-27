@@ -80,14 +80,46 @@ class HomeFragment : Fragment(), OnCategoryItemClicked {
         productRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 productList.clear()
-                for (childSnapshot in snapshot.children) {
-                    val product = childSnapshot.getValue(ProductModel::class.java)
-                    Log.d("MyApp", "product details ${product?.productName}")
-                    product?.let {
-                        productList.add(product)
+                for (productSnapshot in snapshot.children) {
+//                    val product = childSnapshot.getValue(ProductModel::class.java)
+//                    Log.d("MyApp", "product details ${product?.productName}")
+//
+//                    val productImg = childSnapshot.child("productImage")
+//
+//                    Log.d("MyApp", "product details ${product?.productImage}")
+//
+//
+                    val productId = productSnapshot.key
+
+                    Log.d("MyApp", "product id $productId")
+
+
+                    val productName = productSnapshot.child("productName").getValue(String::class.java)
+                    val price = productSnapshot.child("price").getValue(Double::class.java)
+                    val rating = productSnapshot.child("rating").getValue(Double::class.java)
+                    val storeName = productSnapshot.child("storeName").getValue(String::class.java)
+
+                    // Retrieve the first image URL from productImage1
+                    val productImageSnapshot = productSnapshot.child("productImage")
+                    var imageUrl: String? = null
+                    for (imageSnapshot in productImageSnapshot.children) {
+                        imageUrl = imageSnapshot.getValue(String::class.java)
+                        break // Exit the loop after getting the first image URL
+                    }
+                    val model = ProductModel()
+                    model.storeName = storeName
+                    model.rating = rating!!
+                    model.price = price!!
+                    model.productName = productName
+                    model.productImage = imageUrl
+                    model.productId = productId
+
+                    model?.let {
+                        productList.add(model)
                     }
                 }
                 val adapter = ProductRVAdapter(productList, OnProductItemClicked {
+                    Log.d("MyApp","clicked id $it")
                 })
                 val LM = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                 binding.productRV.layoutManager = LM
@@ -99,36 +131,6 @@ class HomeFragment : Fragment(), OnCategoryItemClicked {
                 Log.d("MyApp", "Error " + error.message);
             }
         })
-
-//        val productList = listOf(
-//            ProductModel(
-//                "Hoodie", "Taj OutFit", 4.2f, 88.99, R.drawable.hoodie1
-//            ),
-//            ProductModel(
-//                "SweetShirt", "Mega Store", 4.1f, 30.99, R.drawable.hoodie1
-//            ),
-//            ProductModel(
-//                "Quote shirt", "G&P", 3.2f, 45.32, R.drawable.hoodie1
-//            ),
-//            ProductModel(
-//                "Track suit", "Dragon wear", 2.2f, 72.99, R.drawable.hoodie1
-//            ),
-//            ProductModel(
-//                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
-//            ),
-//            ProductModel(
-//                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
-//            ),
-//            ProductModel(
-//                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
-//            ),
-//            // Add more items as needed
-//        )
-//        val adapter = ProductRVAdapter(productList, OnProductItemClicked {
-//        })
-//        val LM = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
-//        binding.productRV.layoutManager = LM
-//        binding.productRV.adapter = adapter
 
     }
 

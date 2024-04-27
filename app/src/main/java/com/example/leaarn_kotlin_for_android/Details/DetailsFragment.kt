@@ -100,7 +100,7 @@ class DetailsFragment : Fragment(),OnProductItemClicked,SmallImagesAdapter.OnIte
         binding.sizeXL.setTextColor(Color.BLACK)
     }
 
-    override fun onProductClick(productID: Int) {
+    override fun onProductClick(productID: String) {
 
     }
 

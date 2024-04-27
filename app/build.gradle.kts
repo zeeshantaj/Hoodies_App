@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation (libs.glide)
 
     implementation(libs.dotsindicator)
     implementation(libs.firebase.database)
