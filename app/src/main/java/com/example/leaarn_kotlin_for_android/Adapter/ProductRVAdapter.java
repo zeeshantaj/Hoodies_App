@@ -1,6 +1,7 @@
 package com.example.leaarn_kotlin_for_android.Adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +27,10 @@ import java.util.List;
 public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.ViewHolder> {
 
     private List<ProductModel> productModelList;
-    private OnProductItemClicked onProductItemClicked;
 
-    public ProductRVAdapter(List<ProductModel> productModelList, OnProductItemClicked onProductItemClicked) {
+    public ProductRVAdapter(List<ProductModel> productModelList) {
         this.productModelList = productModelList;
-        this.onProductItemClicked = onProductItemClicked;
+
     }
 
     @NonNull
@@ -59,11 +59,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onProductItemClicked != null) {
-                    onProductItemClicked.onProductClick(model.getProductId());
-                    Log.d("MyApp", "clicked id "+model.getProductId());
-                }
-                openFragment(v.getContext(), new DetailsFragment());
+                openFragment(v.getContext(), new DetailsFragment(),model.getProductId());
             }
         });
     }
@@ -87,10 +83,15 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
         }
     }
 
-    private void openFragment(Context context, Fragment fragment) {
+    private void openFragment(Context context, Fragment fragment,String productId) {
         if (context instanceof AppCompatActivity) {
             FragmentManager manager = ((AppCompatActivity) context).getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("productId",productId);
+            fragment.setArguments(bundle);
+
             transaction.replace(R.id.mainFragmentContainer, fragment); // Replace R.id.fragment_container with your fragment container id
             transaction.addToBackStack(null);
             transaction.commit();

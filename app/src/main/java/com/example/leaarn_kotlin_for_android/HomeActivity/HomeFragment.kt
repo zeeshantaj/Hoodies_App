@@ -110,9 +110,7 @@ class HomeFragment : Fragment(), OnCategoryItemClicked {
                         productList.add(model)
                     }
                 }
-                val adapter = ProductRVAdapter(productList) {
-
-                }
+                val adapter = ProductRVAdapter(productList)
                 val LM = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                 binding.productRV.layoutManager = LM
                 binding.productRV.adapter = adapter

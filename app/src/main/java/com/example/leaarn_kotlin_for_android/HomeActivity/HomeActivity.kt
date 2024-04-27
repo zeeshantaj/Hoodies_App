@@ -33,6 +33,7 @@ class HomeActivity : AppCompatActivity() {
                         //binding.toolbar.setTitle("")
                         supportActionBar?.title = "Products"
 
+
                     }
                 }
                 R.id.navFav -> {
