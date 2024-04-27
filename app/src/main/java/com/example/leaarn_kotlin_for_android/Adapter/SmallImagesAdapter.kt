@@ -12,7 +12,7 @@ import com.example.leaarn_kotlin_for_android.R
 class SmallImagesAdapter(private val smallImages: List<String>, private val listener: OnItemClickListener) :
     RecyclerView.Adapter<SmallImagesAdapter.ViewHolder>() {
     interface OnItemClickListener {
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int,url: String)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -29,7 +29,7 @@ class SmallImagesAdapter(private val smallImages: List<String>, private val list
 
 
         holder.itemView.setOnClickListener {
-            listener.onItemClick(position)
+            listener.onItemClick(position,imageResId)
         }
     }
 
