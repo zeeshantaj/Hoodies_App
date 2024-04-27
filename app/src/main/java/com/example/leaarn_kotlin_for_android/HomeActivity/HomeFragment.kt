@@ -83,17 +83,9 @@ class HomeFragment : Fragment(), OnCategoryItemClicked {
                 for (productSnapshot in snapshot.children) {
 //                    val product = childSnapshot.getValue(ProductModel::class.java)
 //                    Log.d("MyApp", "product details ${product?.productName}")
-//
 //                    val productImg = childSnapshot.child("productImage")
-//
-//                    Log.d("MyApp", "product details ${product?.productImage}")
-//
-//
+
                     val productId = productSnapshot.key
-
-                    Log.d("MyApp", "product id $productId")
-
-
                     val productName = productSnapshot.child("productName").getValue(String::class.java)
                     val price = productSnapshot.child("price").getValue(Double::class.java)
                     val rating = productSnapshot.child("rating").getValue(Double::class.java)
@@ -114,13 +106,13 @@ class HomeFragment : Fragment(), OnCategoryItemClicked {
                     model.productImage = imageUrl
                     model.productId = productId
 
-                    model?.let {
+                    model.let {
                         productList.add(model)
                     }
                 }
-                val adapter = ProductRVAdapter(productList, OnProductItemClicked {
-                    Log.d("MyApp","clicked id $it")
-                })
+                val adapter = ProductRVAdapter(productList) {
+
+                }
                 val LM = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                 binding.productRV.layoutManager = LM
                 binding.productRV.adapter = adapter

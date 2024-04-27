@@ -1,6 +1,7 @@
 package com.example.leaarn_kotlin_for_android.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,8 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
             @Override
             public void onClick(View v) {
                 if (onProductItemClicked != null) {
-                    //onProductItemClicked.onProductClick(model.getProductImg1());
+                    onProductItemClicked.onProductClick(model.getProductId());
+                    Log.d("MyApp", "clicked id "+model.getProductId());
                 }
                 openFragment(v.getContext(), new DetailsFragment());
             }
