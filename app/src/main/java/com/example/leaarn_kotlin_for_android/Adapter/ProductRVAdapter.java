@@ -1,7 +1,6 @@
 package com.example.leaarn_kotlin_for_android.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -43,21 +41,21 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ProductRVAdapter.ViewHolder holder, int position) {
         ProductModel model = productModelList.get(position);
-        holder.name.setText(model.getName());
+        holder.name.setText(model.getProductName());
         holder.storeName.setText(model.getStoreName());
 
         holder.rating.setText(String.valueOf(model.getRating()));
-        holder.productImg.setImageResource(model.getProductImg());
 
-        holder.price.setText(String.format("$ %4.2f",model.getProductPrice()));
+        holder.price.setText(String.format("$ %4.2f",model.getPrice()));
+
+        holder.productImg.setImageResource(model.getProductImg1());
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (onProductItemClicked != null){
-                    onProductItemClicked.onProductClick(model.getProductImg());
+                    onProductItemClicked.onProductClick(model.getProductImg1());
                 }
                 openFragment(v.getContext(),new DetailsFragment());
             }

@@ -17,18 +17,22 @@ import com.example.leaarn_kotlin_for_android.Models.DisOfferModel
 import com.example.leaarn_kotlin_for_android.Models.ProductModel
 import com.example.leaarn_kotlin_for_android.R
 import com.example.leaarn_kotlin_for_android.databinding.FragmentHomeBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.util.Timer
 import java.util.TimerTask
-import kotlin.concurrent.timer
 
-class HomeFragment : Fragment(),OnCategoryItemClicked{
+class HomeFragment : Fragment(), OnCategoryItemClicked {
 
     private lateinit var binding: FragmentHomeBinding
-    private var selectedCategory : String? = null
+    private var selectedCategory: String? = null
+    private var productList = mutableListOf<ProductModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -41,23 +45,24 @@ class HomeFragment : Fragment(),OnCategoryItemClicked{
         getDiscountOffer()
         getProducts()
         getCategory()
+
     }
 
 
     private fun getCategory() {
         val productList = listOf(
-                "Hoodie","Sweetshirt",
-                "yoga paints",
-                "Track Suit",
-                "T-shirt",
-                "Denim",
-                "Shorts",
-                "trouser"
+            "Hoodie", "Sweetshirt",
+            "yoga paints",
+            "Track Suit",
+            "T-shirt",
+            "Denim",
+            "Shorts",
+            "trouser"
             // Add more items as needed
         )
-        val adapter = CategoryRVAdapter(productList,this)
+        val adapter = CategoryRVAdapter(productList, this)
         val defaultCategory = productList.firstOrNull()
-        val LM = LinearLayoutManager(activity,  LinearLayoutManager.HORIZONTAL, false)
+        val LM = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         binding.categoryRV.layoutManager = LM
         binding.categoryRV.adapter = adapter
 
@@ -66,34 +71,64 @@ class HomeFragment : Fragment(),OnCategoryItemClicked{
             selectedCategory = it
         }
     }
+
     private fun getProducts() {
-        val productList = listOf(
-            ProductModel(
-                "Hoodie", "Taj OutFit", 4.2f, 88.99, R.drawable.hoodie1
-            ),
-            ProductModel(
-                "SweetShirt", "Mega Store", 4.1f, 30.99, R.drawable.hoodie1
-            ),
-            ProductModel(
-                "Quote shirt", "G&P", 3.2f, 45.32, R.drawable.hoodie1
-            ),
-            ProductModel(
-                "Track suit", "Dragon wear", 2.2f, 72.99, R.drawable.hoodie1
-            ),
-            ProductModel(
-                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
-            ),  ProductModel(
-                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
-            ),  ProductModel(
-                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
-            ),
-            // Add more items as needed
-        )
-        val adapter = ProductRVAdapter(productList, OnProductItemClicked {
+
+
+        val database = FirebaseDatabase.getInstance()
+        val productRef = database.getReference("products").child("men")
+        productRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                productList.clear()
+                for (childSnapshot in snapshot.children) {
+                    val product = childSnapshot.getValue(ProductModel::class.java)
+                    Log.d("MyApp", "product details ${product?.productName}")
+                    product?.let {
+                        productList.add(product)
+                    }
+                }
+                val adapter = ProductRVAdapter(productList, OnProductItemClicked {
+                })
+                val LM = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+                binding.productRV.layoutManager = LM
+                binding.productRV.adapter = adapter
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("MyApp", "Error " + error.message);
+            }
         })
-        val LM = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
-        binding.productRV.layoutManager = LM
-        binding.productRV.adapter = adapter
+
+//        val productList = listOf(
+//            ProductModel(
+//                "Hoodie", "Taj OutFit", 4.2f, 88.99, R.drawable.hoodie1
+//            ),
+//            ProductModel(
+//                "SweetShirt", "Mega Store", 4.1f, 30.99, R.drawable.hoodie1
+//            ),
+//            ProductModel(
+//                "Quote shirt", "G&P", 3.2f, 45.32, R.drawable.hoodie1
+//            ),
+//            ProductModel(
+//                "Track suit", "Dragon wear", 2.2f, 72.99, R.drawable.hoodie1
+//            ),
+//            ProductModel(
+//                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
+//            ),
+//            ProductModel(
+//                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
+//            ),
+//            ProductModel(
+//                "Printed T-shirt", "win win wear", 3.1f, 21.89, R.drawable.hoodie1
+//            ),
+//            // Add more items as needed
+//        )
+//        val adapter = ProductRVAdapter(productList, OnProductItemClicked {
+//        })
+//        val LM = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+//        binding.productRV.layoutManager = LM
+//        binding.productRV.adapter = adapter
 
     }
 
@@ -119,15 +154,15 @@ class HomeFragment : Fragment(),OnCategoryItemClicked{
         binding.dotsIndicator.attachTo(binding.offerViewPager)
 
         val timer = Timer()
-        timer.scheduleAtFixedRate(object : TimerTask(){
+        timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
-                activity?.runOnUiThread{
+                activity?.runOnUiThread {
                     val currentTime = binding.offerViewPager.currentItem
                     val nextItem = if (currentTime == adapter.itemCount - 1) 0 else currentTime + 1
-                    binding.offerViewPager.setCurrentItem(nextItem,true)
+                    binding.offerViewPager.setCurrentItem(nextItem, true)
                 }
             }
-        },5000,5000)
+        }, 5000, 5000)
 
     }
 
