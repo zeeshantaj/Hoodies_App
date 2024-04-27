@@ -74,14 +74,25 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:layout_marginBottom="6dp"/>
-            <TextView
+            <kr.co.prnd.readmore.ReadMoreTextView
                 android:id="@+id/descriptionText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="fpodasjpo fdsajpodasoajdfspojasdpofjpoajsdfpojsapojffajdspojffjasdpojffdasojpofdjsafjodsajfpdsoajpfodasjjdsaoj"
-                android:textSize="16sp"
+                app:readMoreColor="@color/red"
+                app:readMoreMaxLine="3"
+                android:text="sajddaso"
                 android:textColor="@color/darkGrey"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="16sp"
+                android:paddingBottom="10dp"
+                app:readMoreText="readMore" />
+<!--            <TextView-->
+<!--                -->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="fpodasjpo fdsajpodasoajdfspojasdpofjpoajsdfpojsapojffajdspojffjasdpojffdasojpofdjsafjodsajfpdsoajpfodasjjdsaoj"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textColor="@color/darkGrey"-->
+<!--                android:layout_marginBottom="10dp"/>-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -205,24 +216,18 @@
         android:id="@+id/orderBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:backgroundTint="@color/red"
-        android:padding="15dp"
-        android:text="Place Order"
+        android:padding="6dp"
+        android:text="Add to Favourite"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="19sp"
+        android:textSize="16sp"
         android:textStyle="bold"
-        app:cornerRadius="20dp"
+        app:cornerRadius="10dp"
+        android:drawableBottom="@drawable/cart_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

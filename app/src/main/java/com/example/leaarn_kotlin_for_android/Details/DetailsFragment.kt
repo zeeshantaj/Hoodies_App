@@ -58,19 +58,12 @@ class DetailsFragment : Fragment(),SmallImagesAdapter.OnItemClickListener{
         }
 
 
-        smallImages = listOf(
-            R.drawable.hoodie1,
-            R.drawable.google_pay_logo,
-            R.drawable.hoodie1
-        )
+//        smallImages = listOf(
+//            R.drawable.hoodie1,
+//            R.drawable.google_pay_logo,
+//            R.drawable.hoodie1
+//        )
 
-        smallImagesAdapter = SmallImagesAdapter(smallImages,this)
-
-        binding.descriptionMainImgVP.setImageResource(smallImages[0])
-
-        binding.descriptionSmallImagesRecyclerView.adapter = smallImagesAdapter
-        binding.descriptionSmallImagesRecyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         binding.orderBtn.setOnClickListener {
             Toast.makeText(activity, "Order Placed", Toast.LENGTH_SHORT).show()
@@ -86,7 +79,8 @@ class DetailsFragment : Fragment(),SmallImagesAdapter.OnItemClickListener{
         val productId = arguments?.getString("productId")
         val database = FirebaseDatabase.getInstance()
         val productRef = database.getReference("products").child("men").child(productId.toString())
-        productRef.addValueEventListener(object : ValueEventListener {
+        productRef.addValueEventListener(object : ValueEventListener,
+            SmallImagesAdapter.OnItemClickListener {
             override fun onDataChange(productSnapshot: DataSnapshot) {
                 val productName = productSnapshot.child("productName").getValue(String::class.java)
                 val description = productSnapshot.child("description").getValue(String::class.java)
@@ -96,16 +90,28 @@ class DetailsFragment : Fragment(),SmallImagesAdapter.OnItemClickListener{
 
                 // Retrieve the first image URL from productImage1
                 val productImageSnapshot = productSnapshot.child("productImage")
-                var imageUrl: String? = null
+                var imageList = mutableListOf<String>()
                 for (imageSnapshot in productImageSnapshot.children) {
-                    imageUrl = imageSnapshot.getValue(String::class.java)
+                    val imageUrl = imageSnapshot.getValue(String::class.java)
+                    imageUrl?.let {
+                        imageList.add(it)
+
+                    }
 
                 }
+                smallImagesAdapter = SmallImagesAdapter(imageList,this)
+
+                binding.descriptionMainImgVP.setImageResource(smallImages[0])
+
+                binding.descriptionSmallImagesRecyclerView.adapter = smallImagesAdapter
+                binding.descriptionSmallImagesRecyclerView.layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
                 Log.d("MyApp", "name $productName")
                 Log.d("MyApp", "price $price")
                 Log.d("MyApp", "rating $rating")
                 Log.d("MyApp", "store $storeName")
-                Log.d("MyApp", "image url $imageUrl")
+//                Log.d("MyApp", "image url $imageUrl")
                 binding.descriptionProductName.text = productName
                 binding.descriptionStoreName.text = "Featured by $storeName"
                 binding.descriptionText.text = description
@@ -118,10 +124,12 @@ class DetailsFragment : Fragment(),SmallImagesAdapter.OnItemClickListener{
 
             }
 
+            override fun onItemClick(position: Int) {
+                binding.descriptionMainImgVP.setImageResource(smallImages[position])
+            }
         })
     }
     override fun onItemClick(position: Int) {
-        binding.descriptionMainImgVP.setImageResource(smallImages[position])
 
         //Toast.makeText(activity, "img clicked$position", Toast.LENGTH_SHORT).show()
     }

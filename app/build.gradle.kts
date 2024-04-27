@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation (libs.glide)
 
+    implementation("kr.co.prnd:readmore-textview:1.0.0")
+
     implementation(libs.dotsindicator)
     implementation(libs.firebase.database)
     implementation(libs.firebase.storage)

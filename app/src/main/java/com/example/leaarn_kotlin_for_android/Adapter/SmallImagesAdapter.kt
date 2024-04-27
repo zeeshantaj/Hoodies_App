@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.leaarn_kotlin_for_android.R
 
-class SmallImagesAdapter(private val smallImages: List<Int>, private val listener: OnItemClickListener) :
+class SmallImagesAdapter(private val smallImages: List<String>, private val listener: OnItemClickListener) :
     RecyclerView.Adapter<SmallImagesAdapter.ViewHolder>() {
     interface OnItemClickListener {
         fun onItemClick(position: Int)
@@ -21,10 +22,14 @@ class SmallImagesAdapter(private val smallImages: List<Int>, private val listene
 
     override fun onBindViewHolder(holder: SmallImagesAdapter.ViewHolder, position: Int) {
         val imageResId = smallImages[position]
-        holder.imageView.setImageResource(imageResId)
+        //holder.imageView.setImageResource(imageResId)
+        Glide.with(holder.itemView.context)
+            .load(imageResId)
+            .into(holder.imageView)
+
+
         holder.itemView.setOnClickListener {
             listener.onItemClick(position)
-
         }
     }
 
