@@ -1,6 +1,7 @@
 package com.example.leaarn_kotlin_for_android.Details
 
 import android.graphics.Color
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -28,6 +29,8 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: DetailsLayoutBinding
     private lateinit var smallImagesAdapter: SmallImagesAdapter
     private var imageList = mutableListOf<String>()
+    private var isCheck: Boolean = true
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,8 +59,20 @@ class DetailsFragment : Fragment() {
             selectedSize(binding.sizeXL)
         }
 
+        if (isCheck){
+            binding.checkCircleIcon.visibility = View.GONE
+        }else{
+            binding.checkCircleIcon.visibility = View.VISIBLE
+        }
         binding.orderBtn.setOnClickListener {
             Toast.makeText(activity, "Order Placed", Toast.LENGTH_SHORT).show()
+            if (isCheck){
+                isCheck = false
+                binding.checkCircleIcon.visibility = View.VISIBLE
+            }else{
+                isCheck = true
+                binding.checkCircleIcon.visibility = View.GONE
+            }
 //            activity?.let {
 //                FragmentUtils.loadFragment(
 //                    it.supportFragmentManager,
