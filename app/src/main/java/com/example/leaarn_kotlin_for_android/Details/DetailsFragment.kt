@@ -58,13 +58,13 @@ class DetailsFragment : Fragment() {
 
         binding.orderBtn.setOnClickListener {
             Toast.makeText(activity, "Order Placed", Toast.LENGTH_SHORT).show()
-            activity?.let {
-                FragmentUtils.loadFragment(
-                    it.supportFragmentManager,
-                    R.id.mainFragmentContainer,
-                    FragmentPayment()
-                )
-            }
+//            activity?.let {
+//                FragmentUtils.loadFragment(
+//                    it.supportFragmentManager,
+//                    R.id.mainFragmentContainer,
+//                    FragmentPayment()
+//                )
+//            }
 
         }
         getProductDetails()
