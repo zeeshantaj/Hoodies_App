@@ -1,7 +1,7 @@
 package com.example.leaarn_kotlin_for_android.Details
 
 import android.graphics.Color
-import android.opengl.Visibility
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,10 +15,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.leaarn_kotlin_for_android.Adapter.SmallImagesAdapter
-import com.example.leaarn_kotlin_for_android.Payment.FragmentPayment
 import com.example.leaarn_kotlin_for_android.R
-import com.example.leaarn_kotlin_for_android.Utils.FragmentUtils
 import com.example.leaarn_kotlin_for_android.databinding.DetailsLayoutBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -31,7 +30,8 @@ class DetailsFragment : Fragment() {
     private lateinit var smallImagesAdapter: SmallImagesAdapter
     private var imageList = mutableListOf<String>()
     private var isCheck: Boolean = true
-    private var productId: String? = null
+    private lateinit var productId: String
+    private var selectedSize: String? = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,27 +67,52 @@ class DetailsFragment : Fragment() {
             binding.checkCircleIcon.visibility = View.VISIBLE
         }
         binding.orderBtn.setOnClickListener {
+
+            val firebase = FirebaseAuth.getInstance()
+            val uid = firebase.uid
+            val database = FirebaseDatabase.getInstance()
+            val productRef = database.getReference("favourite").child(uid.toString()).child(productId)
+
+
+            if (selectedSize?.isEmpty()!!){
+                Toast.makeText(activity,"Please select Size", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             Toast.makeText(activity, "Order Placed", Toast.LENGTH_SHORT).show()
             if (isCheck){
+                val hashMap:HashMap<String,String> = HashMap()
+                hashMap.set("productId",productId)
+                hashMap.set("Size", selectedSize!!)
+                productRef.setValue(hashMap).addOnSuccessListener {
+                    Toast.makeText(activity,"Product Added to Favourite",Toast.LENGTH_LONG).show()
+
+                    val snackbar = Snackbar.make(binding.orderBtn,"Product Added to Favourite",Snackbar.LENGTH_INDEFINITE)
+                        snackbar.setAction("Dismiss"){
+                            snackbar.dismiss()
+                        }
+                        snackbar.show()
+
+                }.addOnFailureListener {it
+                    val snackbar = Snackbar.make(binding.orderBtn,"Product Failed to add ${it.message}",Snackbar.LENGTH_INDEFINITE)
+                    snackbar.setAction("Dismiss"){
+                        snackbar.dismiss()
+                    }
+                    snackbar.show()
+                }
+                binding.orderBtn.text = "Remove From Favourite"
                 isCheck = false
                 binding.checkCircleIcon.visibility = View.VISIBLE
             }else{
+                binding.orderBtn.text = "Add to Favorite"
+                productRef.removeValue()
                 isCheck = true
                 binding.checkCircleIcon.visibility = View.GONE
             }
 
 
-            val firebase = FirebaseAuth.getInstance()
-            val uid = firebase.currentUser?.uid
-            val database = FirebaseDatabase.getInstance()
-            val productRef = database.getReference("favourite").child(uid.toString()).child(productId.toString())
-            val hashMap:HashMap<String,String> = HashMap()
-            hashMap.set("productId",productId.toString())
-            productRef.setValue(hashMap).addOnSuccessListener {
-                Toast.makeText(activity,"Product Added to Favourite",Toast.LENGTH_LONG).show()
-            }.addOnFailureListener {it
-            Toast.makeText(activity,"Error ${it.message}",Toast.LENGTH_LONG).show()
-            }
+
+
 
 
 //            activity?.let {
@@ -101,9 +126,18 @@ class DetailsFragment : Fragment() {
         }
         getProductDetails()
     }
+    private fun selectedSize(button: Button) {
+
+        defaultBtnProperties()
+        button.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.red))
+        button.setTextColor(Color.WHITE)
+        val buttonText: String = button.text.toString()
+        selectedSize = buttonText
+    }
+
 
     private fun getProductDetails() {
-        productId = arguments?.getString("productId")
+        productId = arguments?.getString("productId").toString()
         val database = FirebaseDatabase.getInstance()
         val productRef = database.getReference("products").child("men").child(productId.toString())
         productRef.addValueEventListener(object : ValueEventListener {
@@ -151,19 +185,6 @@ class DetailsFragment : Fragment() {
                 Log.d("MyApp", "Error ${error.message}")
             }
         })
-        binding.orderBtn.setOnClickListener {
-            Toast.makeText(activity,"id $productId",Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun selectedSize(button: Button) {
-
-        defaultBtnProperties()
-        button.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.red))
-        button.setTextColor(Color.WHITE)
-        val buttonText: String = button.text.toString()
-        Toast.makeText(activity, "Clicked Button: $buttonText", Toast.LENGTH_SHORT).show()
-
     }
 
     private fun defaultBtnProperties() {
