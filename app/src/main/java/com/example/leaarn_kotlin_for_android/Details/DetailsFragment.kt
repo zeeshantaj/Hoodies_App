@@ -19,6 +19,7 @@ import com.example.leaarn_kotlin_for_android.Payment.FragmentPayment
 import com.example.leaarn_kotlin_for_android.R
 import com.example.leaarn_kotlin_for_android.Utils.FragmentUtils
 import com.example.leaarn_kotlin_for_android.databinding.DetailsLayoutBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -30,6 +31,7 @@ class DetailsFragment : Fragment() {
     private lateinit var smallImagesAdapter: SmallImagesAdapter
     private var imageList = mutableListOf<String>()
     private var isCheck: Boolean = true
+    private var productId: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +75,21 @@ class DetailsFragment : Fragment() {
                 isCheck = true
                 binding.checkCircleIcon.visibility = View.GONE
             }
+
+
+            val firebase = FirebaseAuth.getInstance()
+            val uid = firebase.currentUser?.uid
+            val database = FirebaseDatabase.getInstance()
+            val productRef = database.getReference("favourite").child(uid.toString()).child(productId.toString())
+            val hashMap:HashMap<String,String> = HashMap()
+            hashMap.set("productId",productId.toString())
+            productRef.setValue(hashMap).addOnSuccessListener {
+                Toast.makeText(activity,"Product Added to Favourite",Toast.LENGTH_LONG).show()
+            }.addOnFailureListener {it
+            Toast.makeText(activity,"Error ${it.message}",Toast.LENGTH_LONG).show()
+            }
+
+
 //            activity?.let {
 //                FragmentUtils.loadFragment(
 //                    it.supportFragmentManager,
@@ -86,7 +103,7 @@ class DetailsFragment : Fragment() {
     }
 
     private fun getProductDetails() {
-        val productId = arguments?.getString("productId")
+        productId = arguments?.getString("productId")
         val database = FirebaseDatabase.getInstance()
         val productRef = database.getReference("products").child("men").child(productId.toString())
         productRef.addValueEventListener(object : ValueEventListener {
