@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.leaarn_kotlin_for_android.MainActivity
+import com.example.leaarn_kotlin_for_android.Payment.FragmentPayment
+import com.example.leaarn_kotlin_for_android.R
+import com.example.leaarn_kotlin_for_android.Utils.FragmentUtils
 import com.example.leaarn_kotlin_for_android.databinding.FragmentFavouriteBinding
 import com.example.leaarn_kotlin_for_android.databinding.FragmentSettingsBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -71,6 +74,16 @@ class FragmentSettings: Fragment() {
             }
             val alertDialogue = builder.create()
             alertDialogue.show()
+        }
+        binding.paymeentSettings.setOnClickListener {
+
+            activity?.let {
+                FragmentUtils.loadFragment(
+                    it.supportFragmentManager,
+                    R.id.mainFragmentContainer,
+                    FragmentPayment()
+                )
+            }
         }
     }
 

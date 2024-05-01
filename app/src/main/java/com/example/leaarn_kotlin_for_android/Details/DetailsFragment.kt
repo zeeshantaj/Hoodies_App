@@ -115,13 +115,6 @@ class DetailsFragment : Fragment() {
 
 
 
-//            activity?.let {
-//                FragmentUtils.loadFragment(
-//                    it.supportFragmentManager,
-//                    R.id.mainFragmentContainer,
-//                    FragmentPayment()
-//                )
-//            }
 
         }
         getProductDetails()
