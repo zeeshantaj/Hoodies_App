@@ -1,7 +1,6 @@
 package com.example.leaarn_kotlin_for_android.Details
 
 import android.graphics.Color
-
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -120,7 +119,32 @@ class DetailsFragment : Fragment() {
         getProductDetails()
     }
 
+    private fun checkIsFav(PD: String, button: Button) {
+        val auth = FirebaseAuth.getInstance()
+        val uid = auth.uid
+        val reference = FirebaseDatabase.getInstance().getReference("favourite").child(
+            uid!!
+        )
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val productId = snapshot.child("productId").getValue(
+                        String::class.java
+                    )
+                    if (productId == PD) {
+                        button.text = "Remove from Favourite"
+                    }
+                    else{
+                        button.text = "Add to Favourite"
+                    }
+                }
+            }
 
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("MyApp", "Error " + error.message)
+            }
+        })
+    }
 
     private fun selectedSize(button: Button) {
 
@@ -134,6 +158,7 @@ class DetailsFragment : Fragment() {
 
     private fun getProductDetails() {
         productId = arguments?.getString("productId").toString()
+        checkIsFav(productId,binding.orderBtn)
         val database = FirebaseDatabase.getInstance()
         val productRef = database.getReference("products").child("men").child(productId.toString())
         productRef.addValueEventListener(object : ValueEventListener {

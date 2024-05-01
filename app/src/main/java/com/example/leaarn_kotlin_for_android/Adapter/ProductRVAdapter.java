@@ -107,7 +107,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
         }
     }
 
-    private void checkIsFav(String productId,View itemView) {
+    private void checkIsFav(String PD,View itemView) {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getUid();
@@ -117,7 +117,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     String productId = snapshot.child("productId").getValue(String.class);
-                    if (productId.equals(productId)) {
+                    if (productId.equals(PD)) {
                         itemView.setVisibility(View.VISIBLE);
                     }
                 }
