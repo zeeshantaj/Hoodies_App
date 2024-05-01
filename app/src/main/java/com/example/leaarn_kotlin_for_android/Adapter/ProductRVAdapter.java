@@ -66,9 +66,10 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFragment(v.getContext(), new DetailsFragment(),model.getProductId());
+                openFragment(v.getContext(), new DetailsFragment(), model.getProductId());
             }
         });
+        checkIsFav(model.getProductId(),holder.productCheckBox);
     }
 
     @Override
@@ -78,11 +79,12 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name, storeName, rating, price;
-        private ImageView productImg;
+        private ImageView productImg,productCheckBox;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.productName);
+            productCheckBox = itemView.findViewById(R.id.productCheckBox);
             storeName = itemView.findViewById(R.id.productStoreName);
             rating = itemView.findViewById(R.id.productRating);
             price = itemView.findViewById(R.id.productPrice);
@@ -90,13 +92,13 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
         }
     }
 
-    private void openFragment(Context context, Fragment fragment,String productId) {
+    private void openFragment(Context context, Fragment fragment, String productId) {
         if (context instanceof AppCompatActivity) {
             FragmentManager manager = ((AppCompatActivity) context).getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
 
             Bundle bundle = new Bundle();
-            bundle.putString("productId",productId);
+            bundle.putString("productId", productId);
             fragment.setArguments(bundle);
 
             transaction.replace(R.id.mainFragmentContainer, fragment); // Replace R.id.fragment_container with your fragment container id
@@ -104,10 +106,8 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
             transaction.commit();
         }
     }
-    private void checkIsFav(boolean isFav){
 
-        val database = FirebaseDatabase.getInstance();
-        val productRef = database.getReference("favourite").child(uid.toString());
+    private void checkIsFav(String productId,View itemView) {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getUid();
@@ -115,13 +115,17 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-
+                if (snapshot.exists()) {
+                    String productId = snapshot.child("productId").getValue(String.class);
+                    if (productId.equals(productId)) {
+                        itemView.setVisibility(View.VISIBLE);
+                    }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("MyApp","Error "+error.getMessage());
+                Log.d("MyApp", "Error " + error.getMessage());
             }
         });
 

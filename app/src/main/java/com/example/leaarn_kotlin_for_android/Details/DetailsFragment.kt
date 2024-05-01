@@ -119,6 +119,9 @@ class DetailsFragment : Fragment() {
         }
         getProductDetails()
     }
+
+
+
     private fun selectedSize(button: Button) {
 
         defaultBtnProperties()
