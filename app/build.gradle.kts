@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation (libs.glide)
 
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation("kr.co.prnd:readmore-textview:1.0.0")
 
     implementation(libs.dotsindicator)
