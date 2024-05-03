@@ -128,6 +128,7 @@
                 app:drawableStartCompat="@drawable/mastercard_icon" />
 
             <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/masterCardSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
@@ -208,7 +209,7 @@
                 android:drawablePadding="20dp"
                 android:gravity="start|center"
                 android:padding="10dp"
-                android:text="Master Card"
+                android:text="Google Pay"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
