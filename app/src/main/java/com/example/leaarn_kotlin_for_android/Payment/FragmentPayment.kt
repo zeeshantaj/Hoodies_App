@@ -28,7 +28,8 @@ class FragmentPayment : Fragment() {
        //  Access the activity's supportActionBar
         (activity as AppCompatActivity).supportActionBar?.title = "Payment"
 
-        binding.masterCardSwitch.
+//        binding.masterCardSwitch.
+
 
     }
 }
