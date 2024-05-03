@@ -78,7 +78,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/masterCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -183,9 +183,9 @@
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="5dp"
         android:layout_margin="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/cardView2"
-        app:layout_constraintStart_toStartOf="@+id/cardView2"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+        app:layout_constraintEnd_toEndOf="@+id/masterCardView"
+        app:layout_constraintStart_toStartOf="@+id/masterCardView"
+        app:layout_constraintTop_toBottomOf="@+id/masterCardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
