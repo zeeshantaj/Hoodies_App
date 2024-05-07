@@ -161,6 +161,11 @@ class HomeFragment : Fragment(), OnCategoryItemClicked {
     override fun onCategoryClick(category: String?) {
         selectedCategory = category
         Log.d("MyApp", "category Name$category")
+        val adapter = ProductRVAdapter(productList)
+        adapter.sortList(category)
+        val LM = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
+        binding.productRV.layoutManager = LM
+        binding.productRV.adapter = adapter
     }
 
 }

@@ -40,7 +40,7 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
 
     }
 
-    private void sortList(String cat){
+    public void sortList(String cat){
         ProductModel model = new ProductModel();
         if (model.getProductName().equals(cat)){
             productModelList.add(model);
