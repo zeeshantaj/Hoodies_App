@@ -40,6 +40,9 @@ public class ProductRVAdapter extends RecyclerView.Adapter<ProductRVAdapter.View
 
     }
 
+    private void sortList(){
+
+    }
     @NonNull
     @Override
     public ProductRVAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
