@@ -30,9 +30,9 @@ class FragmentPayment : Fragment() {
 
         binding.masterCardSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
-
+                binding.masterCardView.visibility = View.VISIBLE
             }else{
-
+                binding.masterCardView.visibility = View.GONE
             }
         }
 //        binding.masterCardSwitch.
