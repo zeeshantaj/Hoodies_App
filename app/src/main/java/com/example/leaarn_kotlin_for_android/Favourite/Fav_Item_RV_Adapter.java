@@ -16,6 +16,11 @@ import java.util.List;
 
 public class Fav_Item_RV_Adapter extends RecyclerView.Adapter<Fav_Item_RV_Adapter.ViewHolder> {
     private List<ProductModel> modelList;
+
+    public Fav_Item_RV_Adapter(List<ProductModel> modelList) {
+        this.modelList = modelList;
+    }
+
     @NonNull
     @Override
     public Fav_Item_RV_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
