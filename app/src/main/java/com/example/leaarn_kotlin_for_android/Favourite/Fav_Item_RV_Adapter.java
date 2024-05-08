@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.leaarn_kotlin_for_android.Models.ProductModel;
 import com.example.leaarn_kotlin_for_android.R;
 
@@ -30,7 +31,13 @@ public class Fav_Item_RV_Adapter extends RecyclerView.Adapter<Fav_Item_RV_Adapte
 
     @Override
     public void onBindViewHolder(@NonNull Fav_Item_RV_Adapter.ViewHolder holder, int position) {
-
+        ProductModel model = modelList.get(position);
+        holder.productName.setText(model.getProductName());
+        holder.price.setText(String.format("$ %4.2f", model.getPrice()));
+        holder.size.setText(model.getSize());
+        Glide.with(holder.itemView.getContext())
+                .load(model.getProductImage())
+                .into(holder.imageView);
     }
 
     @Override

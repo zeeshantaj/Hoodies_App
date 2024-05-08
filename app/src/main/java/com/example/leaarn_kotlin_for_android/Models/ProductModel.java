@@ -2,7 +2,7 @@ package com.example.leaarn_kotlin_for_android.Models;
 
 public class ProductModel {
 
-    private String productName,storeName,productId;
+    private String productName,storeName,productId,size;
     //private String productImageUrl;
     private String productImage;
     private double rating;
@@ -11,12 +11,21 @@ public class ProductModel {
     public ProductModel() {
     }
 
+
     public ProductModel(String name, String storeName, double rating, double productPrice, String productImg) {
         this.productName = name;
         this.storeName = storeName;
         this.rating = rating;
         this.price = productPrice;
         this.productImage = productImg;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public String getProductName() {
