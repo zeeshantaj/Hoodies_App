@@ -17,8 +17,6 @@ class FragmentPayment : Fragment() {
     ): View {
          binding = FragmentPaymentBinding.inflate(inflater, container, false)
 
-
-
         return binding.root
     }
 
@@ -27,7 +25,6 @@ class FragmentPayment : Fragment() {
 
        //  Access the activity's supportActionBar
         (activity as AppCompatActivity).supportActionBar?.title = "Payment"
-
         binding.masterCardSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked){
                 binding.masterCardView.visibility = View.VISIBLE
