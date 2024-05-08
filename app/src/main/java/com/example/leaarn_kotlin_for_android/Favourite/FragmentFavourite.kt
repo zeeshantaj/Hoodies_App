@@ -13,8 +13,18 @@ class FragmentFavourite: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFavouriteBinding.inflate(inflater, container, false)
+
+
+
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+
+
     }
 }
