@@ -16,7 +16,6 @@ class FragmentPayment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
          binding = FragmentPaymentBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
