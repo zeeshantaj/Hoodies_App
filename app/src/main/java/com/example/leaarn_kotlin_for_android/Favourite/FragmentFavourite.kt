@@ -44,13 +44,11 @@ class FragmentFavourite: Fragment() {
                         // get fav items
                     }
                 }
-
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.d("MyApp","Error ${error.message}")
             }
-
         })
 
     }
